@@ -1,3 +1,4 @@
 requests
 exifread
 PyPDF2
+telethon
