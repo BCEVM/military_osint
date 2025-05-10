@@ -1,13 +1,19 @@
 #!/bin/bash
 
-REPO_URL="https://github.com/USERNAME/military_osint.git"
+REPO_URL="https://github.com/BCEVM/military_osint.git"
 INSTALL_DIR="$HOME/tools/military_osint"
 
+echo "[*] Memulai proses update..."
+
 if [ -d "$INSTALL_DIR/.git" ]; then
-    echo "[+] Mengambil update dari repository..."
-    cd "$INSTALL_DIR" && git pull
+    echo "[+] Repo sudah ada. Melakukan git pull..."
+    cd "$INSTALL_DIR" || { echo "[!] Gagal masuk ke direktori $INSTALL_DIR"; exit 1; }
+    git reset --hard HEAD
+    git pull origin main
     echo "[+] Update selesai."
 else
-    echo "[!] Folder tidak terdeteksi sebagai git repo. Clone ulang:"
-    git clone "$REPO_URL" "$INSTALL_DIR"
+    echo "[!] Git repo belum ada. Mengkloning ulang dari awal..."
+    rm -rf "$INSTALL_DIR"
+    git clone "$REPO_URL" "$INSTALL_DIR" || { echo "[!] Gagal meng-clone repo."; exit 1; }
+    echo "[+] Clone selesai."
 fi
