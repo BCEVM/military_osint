@@ -1,14 +1,18 @@
-import exifread
+import subprocess
+import os
 
 def run():
-    print("\n=== EXIF Analyzer ===")
+    print("\n=== EXIF Analyzer (ExifTool) ===")
     path = input("Path ke file gambar >> ")
+    if not os.path.isfile(path):
+        print("[!] File tidak ditemukan.")
+        return
+
     try:
-        with open(path, 'rb') as f:
-            tags = exifread.process_file(f)
-            if not tags:
-                print("[!] Tidak ada data EXIF ditemukan.")
-            for tag in tags:
-                print(f"{tag}: {tags[tag]}")
-    except:
-        print("[!] Gagal membaca file atau tidak ditemukan.")
+        result = subprocess.run(["exiftool", path], capture_output=True, text=True)
+        if result.returncode == 0:
+            print(result.stdout)
+        else:
+            print("[!] Gagal mengeksekusi exiftool.")
+    except FileNotFoundError:
+        print("[!] exiftool tidak ditemukan. Install dengan 'sudo apt install libimage-exiftool-perl'")
