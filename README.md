@@ -35,7 +35,7 @@
 ## 🚀 Instalasi / Installation
 
 ```bash
-git clone https://github.com/USERNAME/military_osint.git
+git clone https://github.com/BCEVM/military_osint.git
 cd military_osint
 pip install -r requirements.txt
 chmod +x update.sh
