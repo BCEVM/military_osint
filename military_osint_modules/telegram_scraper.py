@@ -3,9 +3,9 @@ from telethon.tl.functions.messages import GetHistoryRequest
 import os
 
 # === GANTI DENGAN MILIKMU ===
-api_id = 29941352
-api_hash = "1f112c546dd69be79de2d51f597b75fa"
-phone = "+6281993261212"
+api_id = api id kamu
+api_hash = "api hash kamu"
+phone = "+62nomor hp kamu"
 
 # === LOGIN (auto session file) ===
 client = TelegramClient("telegram_scraper_session", api_id, api_hash)
